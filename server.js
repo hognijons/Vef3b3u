@@ -1,13 +1,7 @@
 var express = require('express');
 var app = express();
-var cool = require('cool-ascii-faces');
-
-app.set('port', (process.env.PORT || 5000));
-
-app.get('/', function(request, response) {
-  response.send(cool());
+app.use('/', express.static(__dirname + '/public'));
+var port = Number(process.env.PORT || 5000);
+app.listen(port, function() { 
+    console.log('Your files will be served through this web server')
 });
-
-app.listen(app.get('port'), function() {
-  console.log("Node app is running at localhost:" + app.get('port'))
-})
